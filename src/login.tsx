@@ -1,5 +1,7 @@
 import React, {Component, useState} from 'react';
 import ReactDom from 'react-dom';
+import {Redirect, useHistory} from 'react-router-dom';
+
 
 
 export default class LoginForm extends Component<any,any>{
@@ -22,17 +24,25 @@ export default class LoginForm extends Component<any,any>{
         console.log(this.state.password);
     }
 
-    public LoginSubmit(email:string, password:string) {
-
+    async LoginSubmit(email:string, password:string) {
+        const history = useHistory()
         const url = "https://reqres.in/api/login"
         const data = {email: this.state.email, password: this.state.password}
-        fetch(url, {
+        const fetchApi = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {'Content-Type': 'application/json'}
         })
             .catch(error => console.error('Error:', error))
-            .then(response => console.log('Success:', response))
+            if(fetchApi ==null){
+                return;
+            }
+
+        const fetchApiToJson = await fetchApi.json()
+        history.push('/tickets')
+
+
+
     }
 
     render(){
