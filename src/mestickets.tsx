@@ -1,28 +1,39 @@
 import {Component} from "react";
 import React from "react";
 
-export class MesTickets extends Component<any,any> {
+export default class MesTickets extends Component<any,any> {
     constructor(props : any){
         super(props);
         this.state = {
-            billets: []
+            billet : ""
         };
-        this.rechargerBillets();
+        this.billetHandler= this.billetHandler.bind(this);
+    }
+
+    billetHandler(jsonParsed : string | null){
+        this.setState({billet : jsonParsed});
     }
     rechargerBillets(){
-        var billets = localStorage.getItem("billets");
-        if(!billets){
+        let billet = localStorage.getItem("billet");
+            this.billetHandler(billet);
+            console.log(billet);
+            if (billet != null) {
+                console.log("localstorage billet 2 " + JSON.parse(billet))
+            }
+
+        if (billet != null) {
+            this.billetHandler(billet);
+            console.log('state' + this.state.billet);
+        }else{
             return;
         }
-        this.setState({billets :JSON.parse(billets)});
+
     }
+
     render() {
         return <div>
-            {this.state.billets.map(function (billet: any, index: number) {
-                billet = JSON.parse(billet);
-                {billet.gareDepart}
-                {billet.gareArrivee}
-            })}
+            {this.rechargerBillets}
+            Mon billet : {this.state.billet}
         </div>
     }
 

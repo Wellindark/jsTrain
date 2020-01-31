@@ -3,7 +3,6 @@ import Trajet, {Ticket} from "./trajet";
 import {recherche} from "./utils/recherche";
 import rechercheDeTicket from "./rechercheDeTicket";
 import RechercheDeTicket from "./rechercheDeTicket";
-import {Button} from "@material-ui/core";
 
 
 export default class ListeTickets extends Component<any,any>{
@@ -30,17 +29,20 @@ export default class ListeTickets extends Component<any,any>{
 
     reserverBillet(){
         var billet = JSON.stringify({
-            "gareDepart": this.state.gareDepart,
-            "gareArrivee" : this.state.gareArrivee,
+            gareDepart: this.state.gareDepart,
+            gareArrivee : this.state.gareArrivee,
         });
         var billets: string | null = localStorage.getItem("billets") ;
 
         if(billets) {
             billets = JSON.parse(billets);
-        }
+        }else {
 
-        localStorage.setItem("billets", JSON.stringify(billets));
-        document.location.href="/mesTickets";
+            localStorage.setItem("billets", JSON.stringify(billets));
+        }
+        localStorage.setItem("billet", JSON.stringify(billet));
+
+        document.location.href="/mestickets";
     }
 
 
@@ -52,9 +54,9 @@ render() {
                 <RechercheDeTicket func={this.handleGareDepart}></RechercheDeTicket>
                 <p>gare départ : {this.state.gareDepart}</p>
                 <p>gare arrivée : {this.state.gareArrivee}</p>
-                <Button onClick={()=> this.reserverBillet()}>
+                <button onClick={()=> this.reserverBillet()}>
                     Réserver ce billet
-                </Button>
+                </button>
 
             </div>
         }
