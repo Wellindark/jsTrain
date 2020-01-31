@@ -3,6 +3,7 @@ import Trajet, {Ticket} from "./trajet";
 import {recherche} from "./utils/recherche";
 import rechercheDeTicket from "./rechercheDeTicket";
 import RechercheDeTicket from "./rechercheDeTicket";
+import {Button} from "@material-ui/core";
 
 
 export default class ListeTickets extends Component<any,any>{
@@ -27,20 +28,20 @@ export default class ListeTickets extends Component<any,any>{
         this.setState({gareArrivee :evt});
     };
 
+    reserverBillet(){
+        var billet = JSON.stringify({
+            "gareDepart": this.state.gareDepart,
+            "gareArrivee" : this.state.gareArrivee,
+        });
+        var billets: string | null = localStorage.getItem("billets") ;
 
-    tickets :Ticket[] = [
-
-        {gareArrive: 'Paris', gareDepart: 'Lille',dateDepart:'31/01/2020'},
-        {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
-        {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
-        {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
-        {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
-        {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
-        ];
-
-    generateList(){
-            return this.tickets.map((ticket)=>{return <Trajet gareDepart={ticket.gareDepart} gareArrive={ticket.gareArrive} dateDepart={ticket.dateDepart}></Trajet>})
+        if(billets) {
+            billets = JSON.parse(billets);
         }
+
+        localStorage.setItem("billets", JSON.stringify(billets));
+        document.location.href="/mesTickets";
+    }
 
 
 
@@ -49,7 +50,11 @@ render() {
         {
             return <div>
                 <RechercheDeTicket func={this.handleGareDepart}></RechercheDeTicket>
-                {this.generateList()}
+                <p>gare départ : {this.state.gareDepart}</p>
+                <p>gare arrivée : {this.state.gareArrivee}</p>
+                <Button onClick={()=> this.reserverBillet()}>
+                    Réserver ce billet
+                </Button>
 
             </div>
         }
