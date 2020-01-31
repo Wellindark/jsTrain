@@ -36,16 +36,12 @@ export default class LoginForm extends Component<any,any>{
             .catch(error => console.error('Error:', error))
             if(fetchApi ==null){
                 return;
+            }else{
+                const fetchApiToJson = await fetchApi.json();
+                isLog = true;
+                localStorage.setItem('isLog','true')
+                document.location.href="/mestickets";
             }
-
-        const fetchApiToJson = await fetchApi.json();
-        isLog = true;
-        localStorage.setItem('isLog','true')
-
-
-
-
-
     }
 
     render(){

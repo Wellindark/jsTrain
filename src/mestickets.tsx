@@ -2,8 +2,8 @@ import {Component} from "react";
 import React from "react";
 
 export default class MesTickets extends Component<any,any> {
-    constructor(props : any){
-        super(props);
+    constructor(props : any, context :any){
+        super(props,context);
         this.state = {
             billet : ""
         };
@@ -13,7 +13,8 @@ export default class MesTickets extends Component<any,any> {
     billetHandler(jsonParsed : string | null){
         this.setState({billet : jsonParsed});
     }
-    rechargerBillets(){
+    rechargerLesBillets(){
+        console.log(localStorage.getItem("billet"));
         let billet = localStorage.getItem("billet");
             this.billetHandler(billet);
             console.log(billet);
@@ -32,7 +33,7 @@ export default class MesTickets extends Component<any,any> {
 
     render() {
         return <div>
-            {this.rechargerBillets}
+            {this.rechargerLesBillets}
             Mon billet : {this.state.billet}
         </div>
     }

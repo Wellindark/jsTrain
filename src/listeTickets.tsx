@@ -44,9 +44,6 @@ export default class ListeTickets extends Component<any,any>{
 
         document.location.href="/mestickets";
     }
-
-
-
 render() {
 
         {

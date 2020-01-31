@@ -7,6 +7,7 @@ import './App.css';
 import Trajet from './trajet';
 import ListeTickets from "./listeTickets";
 import MesTickets from "./mestickets";
+import Reduction from "./reduction";
 
 export function App() {
   const [isLogged, setIsLogged] = useState();
@@ -27,10 +28,12 @@ export function App() {
         <Link to="/login">Login</Link>
         <Link to="/tickets">Tickets</Link>
         <Link to="/mestickets">Mes Tickets</Link>
+        <Link to="/reduction">Reduction</Link>
         <Switch>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/tickets" component={ListeTickets}/>
           <Route exact path="/mestickets" component={MesTickets}/>
+          <Route exact path="/reduction"component={Reduction}/>
         </Switch>
       </Router>
     </div>
