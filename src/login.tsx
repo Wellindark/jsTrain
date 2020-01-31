@@ -25,7 +25,7 @@ export default class LoginForm extends Component<any,any>{
     }
 
     async LoginSubmit(email:string, password:string) {
-        const history = useHistory()
+        let isLog = false;
         const url = "https://reqres.in/api/login"
         const data = {email: this.state.email, password: this.state.password}
         const fetchApi = await fetch(url, {
@@ -38,8 +38,11 @@ export default class LoginForm extends Component<any,any>{
                 return;
             }
 
-        const fetchApiToJson = await fetchApi.json()
-        history.push('/tickets')
+        const fetchApiToJson = await fetchApi.json();
+        isLog = true;
+        localStorage.setItem('isLog','true')
+
+
 
 
 

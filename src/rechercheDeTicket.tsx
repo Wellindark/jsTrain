@@ -29,6 +29,7 @@ export default class RechercheDeTicket extends Component<any,any> {
     }
     updateStateGareDepart(e:any){
         this.setState({gareDepart :e.target.innerHTML});
+        console.log(this.state.gareDepart);
     }
 
     updateStateGareArrivee(e:any){
@@ -38,7 +39,7 @@ export default class RechercheDeTicket extends Component<any,any> {
     render(){
         return <div style={{width: "18rem"}}>
             <h4>Recherche de gare</h4>
-            <p>Choisir votre billet
+            Choisir votre billet
             <Autocomplete
             id="country-select-demo"
             style={{ width: 300 }}
@@ -77,7 +78,9 @@ export default class RechercheDeTicket extends Component<any,any> {
                         />
                     )}
                 />
-            </p>
+                <button onClick={(evt:any)=>this.props.func(this.state.gareDepart, this.state.gareArrivee)
+             }>Rechercher</button>
+
         </div>;
     };
 

@@ -9,9 +9,9 @@ export default class Trajet extends Component<Ticket,any>{
 
     render(){
         return <div>
-            Gare de départ du trajet : {this.props.gareDepart};
-            Date départ du trajet : {this.props.dateDepart};
-
+            <p>Depart : {this.props.gareDepart}</p>
+            <p>Arrivee : {this.props.gareArrive}</p>
+            <p>Date depart :{this.props.dateDepart}</p>
         </div>
     };
 

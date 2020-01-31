@@ -28,7 +28,7 @@ export function App() {
         <Link to="/trajet">Trajet</Link>
         <Switch>
           <Route exact path="/login" component={Login}/>
-          <Route exact path="/tickets" component={RechercheDeTicket}/>
+          <Route exact path="/tickets" component={ListeTickets}/>
           <Route exact path="/trajet"></Route>
         </Switch>
       </Router>
