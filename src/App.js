@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom';
 import Login from './login';
-import Tickets from './tickets';
+import RechercheDeTicket from './rechercheDeTicket';
 import logo from './logo.svg';
 import './App.css';
 import Trajet from './trajet';
@@ -9,6 +9,15 @@ import ListeTickets from "./listeTickets";
 
 export function App() {
   const [isLogged, setIsLogged] = useState();
+  const [listeTickets, setListeTickets] = useState([
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+    {gareArrive: 'Paris', gareDepart:'Lille',dateDepart:'31/01/2020'},
+  ]);
+
 
   return (
     <div className="App">
@@ -19,8 +28,8 @@ export function App() {
         <Link to="/trajet">Trajet</Link>
         <Switch>
           <Route exact path="/login" component={Login}/>
-          <Route exact path="/tickets" component={Tickets}/>
-          <Route exact path="/trajet" component={ListeTickets}/>
+          <Route exact path="/tickets" component={RechercheDeTicket}/>
+          <Route exact path="/trajet"></Route>
         </Switch>
       </Router>
     </div>
